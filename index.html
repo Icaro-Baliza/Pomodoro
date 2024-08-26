@@ -6,26 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro</title>
     <link rel="shortcut icon" href="./imagens/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
-        integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./styles/reset.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prata&family=Unbounded:wght@200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="styles/index.css">
     <script src="dist/crud.js" defer></script>
     <script src="dist/main.js" defer></script>
 </head>
 
 <body>
     <main class="app">
+        <!-- Nome do projeto -->
         <header class="app__header">
             <div class="app__logo-title-container">
                 <h1 class="app__title_project">Pomodoro</h1>
             </div>
         </header>
+
+        <!-- Banner com imagem e texto, são alterado a depender do foco -->
         <section class="app__section-banner-container">
             <h1 class="app__title">
                 Otimize sua produtividade,<br>
@@ -35,8 +36,12 @@
                 <img class="app__image" src="/imagens/foco.png" alt="">
             </figure>
         </section>
+
+        <!-- Seção do cronometro -->
         <section class="app__section-card-container">
             <div class="app__card">
+
+                <!-- Lista de botões que alteram o contexto -->
                 <ul class="app__card-list">
                     <li class="app__card-list-item">
                         <button data-contexto="foco" class="app__card-button app__card-button--foco active">Foco</button>
@@ -48,20 +53,28 @@
                         <button data-contexto="long" class="app__card-button app__card-button--longo">Descanso longo</button>
                     </li>
                 </ul>
+
+                <!-- Cronometro -->
                 <div id="timer" class="app__card-timer"></div>
+
+                <!-- Toggle para ativar música -->
                 <ul class="app__card-list">
+
                     <li class="app__card-list-item">
                         <label class="toggle">
                             <input class="toggle-checkbox" type="checkbox" id="alternar-musica">
                             <div class="toggle-switch"></div>
                         </label>
                     </li>
+
                     <li class="app__card-list-item">
                         <label class="app__card-list-label" for="alternar-musica">
                             Música
                         </label>
                     </li>
                 </ul>
+
+                <!-- Botão para pausar ou começar o cronometro -->
                 <div class="app__card-primary-button-wrapper">
                     <button id="start-pause" class="app__card-primary-button">
                         <img class="app__card-primary-butto-icon" src="/imagens/play_arrow.png" alt="">
@@ -71,25 +84,38 @@
             </div>
         </section>
 
+        <!-- Seção referente as tarefas -->
         <section class="app__section-task-container">
             <div class="app__section-task-content">
+
+                <!-- Seção de tarefa em andamento -->
                 <header class="app__section-active-task">
                     <p class="app__section-active-task-label">#Em andamento:</p>
                     <p class="app__section-active-task-description"></p>
                 </header>
+
+                <!-- Seção referentes as tarefas ativas -->
                 <div class="app__section-task-header">
                     <h2 class="app__section-tasks-heading">Lista de tarefas:</h2>
                     <div class="dropdown-container">
+
+                        <!-- Botão para mostrar mais opções -->
                         <button class="app_button-more">
                             <img src="/imagens/more.svg" alt="">
                         </button>
+
+                        <!-- Lista de botões para limpar tarefas -->
                         <ul class="app__section-task-header__ul">
+
+                            <!-- Botão para remover tarefas concluidas -->
                             <li class="app__section-task-header__li">
                                 <button class="app__section-task-header__li__button" id="btn-remover-concluidas">
                                     <img src="/imagens/check.svg" alt="">
                                     Limpar tarefas concluídas
                                 </button>
                             </li>
+
+                            <!-- Botão para remover todas as tarefas -->
                             <li class="app__section-task-header__li">
                                 <button class="app__section-task-header__li__button" id="btn-remover-todas">
                                     <img src="/imagens/trash.svg" alt="">
@@ -99,33 +125,44 @@
                         </ul>
                     </div>
                 </div>
+
+                <!-- Lista de tarefas -->
                 <ul class="app__section-task-list"></ul>
+
+                <!-- Formulario para adição de tarefa -->
                 <form class="app__form-add-task hidden" aria-hidden="true">
                     <div class="app__form-field">
                         <label class="app__form-label">
                             Adicionando tarefa
                         </label>
+                        <!-- Área para colocar descrição da tarefa -->
                         <textarea required rows="4" class="app__form-textarea" placeholder="No que você está trabalhando?"></textarea>
                     </div>
+                    <!-- Lista de botões do formulario -->
                     <footer class="app__form-footer">
+                        <!-- Deleta a descrição da tarefa -->
                         <button type="button" class="app__form-footer__button app__form-footer__button--delete">
                             <img src="/imagens/delete.png" alt=""> Deletar
                         </button>
                         <div class="splitter"></div>
+                        <!-- Cancela a adição de tarefa -->
                         <button type="button" class="app__form-footer__button app__form-footer__button--cancel">
                             <img src="/imagens/close.png" alt=""> Cancelar
                         </button>
+                        <!-- Salva a tarefa -->
                         <button class="app__form-footer__button app__form-footer__button--confirm">
                             <img src="/imagens/save.png" alt=""> Salvar
                         </button>
                     </footer>
                 </form>
+                <!-- Botão para abrir formulario -->
                 <button class="app__button--add-task">
                     <img src="/imagens/add_circle.png" alt=""> Adicionar nova tarefa
                 </button>
             </div>
         </section>
 
+        <!-- Footer -->
         <footer class="app__footer">
             <p class="app__footer-text">
                 Desenvolvido em 2024

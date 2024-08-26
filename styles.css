@@ -44,10 +44,19 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Unbounded', cursive;
 }
 
-.app__logo-figure {
+.app__logo-title-container {
     display: flex;
     justify-content: center;
     padding: 4rem 0;
+}
+
+.app__title_project {
+    line-height: 150%;
+    font-size: 5.2rem;
+    font-style: normal;
+    color: var(--color-secondary);
+    font-weight: 200;
+    max-width: 46rem;
 }
 
 .app__section-banner-container {

@@ -29,6 +29,7 @@ musicaFocoInput.addEventListener('change', () => {
     }
 });
 
+//Ativação do Botão de foco, alterando as informações correspondentes
 buttonFoco.addEventListener('click', () => {
     tempo = 1500;
     tempoAtual= tempo;
@@ -36,6 +37,7 @@ buttonFoco.addEventListener('click', () => {
     buttonFoco.classList.add('active');
 });
 
+//Ativação do Botão de descanso, alterando as informações correspondentes
 buttonCurto.addEventListener('click', () => {
     tempo = 300;
     tempoAtual= tempo;
@@ -43,6 +45,7 @@ buttonCurto.addEventListener('click', () => {
     buttonCurto.classList.add('active');
 });
 
+//Ativação do Botão de descanso longo, alterando as informações correspondentes
 buttonLongo.addEventListener('click', () => {
     tempo = 900;
     tempoAtual= tempo;
@@ -50,6 +53,7 @@ buttonLongo.addEventListener('click', () => {
     buttonLongo.classList.add('active');
 });
 
+//Altera o layout do site a depender do botão clicado
 function alterarContexto(contexto: string): void {
     mostrarTempo();
     html.setAttribute('data-contexto', contexto);
@@ -93,7 +97,10 @@ const contagemRegressiva = (): void => {
     mostrarTempo();
 };
 
+//Botão para iniciar ou pausar o tempo do cronometro
 function iniciar_pausar(): void {
+    
+    //Caso esteja rodando
     if (intervaloId) {
         somPause.play();
         parar();
@@ -101,6 +108,7 @@ function iniciar_pausar(): void {
         imgIniciarOuPausar.setAttribute('src', '../imagens/play_arrow.png');
         return;
     }
+    //Retoma o cronometro
     somPlay.play();
     intervaloId = setInterval(contagemRegressiva, 1000);
     iniciarOuPausar.textContent = 'Pausar';
@@ -111,6 +119,7 @@ buttonStart.addEventListener('click', () => {
     iniciar_pausar();
 });
 
+//Função para parar o cronometro
 function parar(): void {
     if (intervaloId) {
         clearInterval(intervaloId);
@@ -118,6 +127,7 @@ function parar(): void {
     }
 }
 
+//Mostra o tempo na tela
 function mostrarTempo(): void {
     const tempoEmHoras = new Date(tempoAtual * 1000);
     const tempoFormatado = tempoEmHoras.toLocaleTimeString('pt-BR', { minute: '2-digit', second: '2-digit' });

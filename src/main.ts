@@ -17,7 +17,7 @@ const somPlay = new Audio('./sons/play.wav');
 
 musica.loop = true;
 
-const tempo: number = 5;
+let tempo: number = 1500;
 let tempoAtual: number = tempo;
 let intervaloId:  any = null;
 
@@ -30,16 +30,22 @@ musicaFocoInput.addEventListener('change', () => {
 });
 
 buttonFoco.addEventListener('click', () => {
+    tempo = 1500;
+    tempoAtual= tempo;
     alterarContexto('foco');
     buttonFoco.classList.add('active');
 });
 
 buttonCurto.addEventListener('click', () => {
+    tempo = 300;
+    tempoAtual= tempo;
     alterarContexto('descanso-curto');
     buttonCurto.classList.add('active');
 });
 
 buttonLongo.addEventListener('click', () => {
+    tempo = 900;
+    tempoAtual= tempo;
     alterarContexto('descanso-longo');
     buttonLongo.classList.add('active');
 });
@@ -80,7 +86,7 @@ const contagemRegressiva = (): void => {
         tempoAtual = tempo;
         setTimeout(() => {
             mostrarTempo();
-        }, 1000);
+        }, 6500);
         return;
     }
     tempoAtual--;

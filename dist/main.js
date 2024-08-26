@@ -27,24 +27,28 @@ musicaFocoInput.addEventListener('change', () => {
         musica.pause();
     }
 });
+//Ativação do Botão de foco, alterando as informações correspondentes
 buttonFoco.addEventListener('click', () => {
     tempo = 1500;
     tempoAtual = tempo;
     alterarContexto('foco');
     buttonFoco.classList.add('active');
 });
+//Ativação do Botão de descanso, alterando as informações correspondentes
 buttonCurto.addEventListener('click', () => {
     tempo = 300;
     tempoAtual = tempo;
     alterarContexto('descanso-curto');
     buttonCurto.classList.add('active');
 });
+//Ativação do Botão de descanso longo, alterando as informações correspondentes
 buttonLongo.addEventListener('click', () => {
     tempo = 900;
     tempoAtual = tempo;
     alterarContexto('descanso-longo');
     buttonLongo.classList.add('active');
 });
+//Altera o layout do site a depender do botão clicado
 function alterarContexto(contexto) {
     mostrarTempo();
     html.setAttribute('data-contexto', contexto);
@@ -86,7 +90,9 @@ const contagemRegressiva = () => {
     tempoAtual--;
     mostrarTempo();
 };
+//Botão para iniciar ou pausar o tempo do cronometro
 function iniciar_pausar() {
+    //Caso esteja rodando
     if (intervaloId) {
         somPause.play();
         parar();
@@ -94,6 +100,7 @@ function iniciar_pausar() {
         imgIniciarOuPausar.setAttribute('src', '../imagens/play_arrow.png');
         return;
     }
+    //Retoma o cronometro
     somPlay.play();
     intervaloId = setInterval(contagemRegressiva, 1000);
     iniciarOuPausar.textContent = 'Pausar';
@@ -102,12 +109,14 @@ function iniciar_pausar() {
 buttonStart.addEventListener('click', () => {
     iniciar_pausar();
 });
+//Função para parar o cronometro
 function parar() {
     if (intervaloId) {
         clearInterval(intervaloId);
         intervaloId = null;
     }
 }
+//Mostra o tempo na tela
 function mostrarTempo() {
     const tempoEmHoras = new Date(tempoAtual * 1000);
     const tempoFormatado = tempoEmHoras.toLocaleTimeString('pt-BR', { minute: '2-digit', second: '2-digit' });
